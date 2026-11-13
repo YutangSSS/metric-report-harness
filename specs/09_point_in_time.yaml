@@ -1,0 +1,17 @@
+id: "09"
+title: Point-in-time population tables
+pattern: >
+  Numbered tables of distinct people in service on an as-of date, by service type and by region, with an
+  exclusion rule and a four-year look-back.
+request: >
+  How many distinct animals were in care on Dec 31 2017, by animal type and region type? Leave out wildlife
+  intakes, and only count intakes from the last four years.
+params:
+  as_of: "2017-12-31"
+tables:
+  - kind: point_in_time
+    title: Distinct animals in care by animal type and region type
+    rows: animal_type
+    columns: region_type
+    lookback_years: 4
+    exclude_intake_types: [Wildlife]

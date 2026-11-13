@@ -1,0 +1,16 @@
+id: "07"
+title: Monthly summary plus list view
+pattern: >
+  Follow-up to the monthly summary: "Can you add a list of the records behind each number?" The list has to add
+  up to the summary, month by month.
+request: >
+  Add a list view under the bird summary: animal ID, intake and outcome dates, intake and outcome type, region.
+tables:
+  - kind: monthly_summary
+    title: Bird intakes by month and intake type, with list
+    metric: intakes
+    dimension: intake_type
+    fiscal_years: ["2015-16", "2016-17", "2017-18"]
+    filters:
+      animal_type: Bird
+    list_view: true

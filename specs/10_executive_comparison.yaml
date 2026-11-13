@@ -1,0 +1,20 @@
+id: "10"
+title: Executive two-year comparison
+pattern: >
+  Executive data request: this year against last year, numeric and % change, same scope both years, and every
+  figure labelled as an annual total, monthly average or year to date.
+request: >
+  For the briefing note: intakes, stays closed, adoptions and intakes that became 30+ day stays, 2017-18 against
+  2016-17, with change and % change. Make clear what each number is.
+tables:
+  - kind: comparison
+    title: FY 2017-18 to date against the same months of FY 2016-17
+    previous: "2016-17 YTD"
+    current: "2017-18 YTD"
+    measures:
+      - {label: Intakes started, metric: intakes, stat: total}
+      - {label: Intakes started per month, metric: intakes, stat: monthly_average}
+      - {label: Stays closed, metric: outcomes, stat: total}
+      - {label: Adoptions, metric: adoptions, stat: total}
+      - {label: Intakes that became 30+ day stays, metric: long_stays, stat: total}
+      - {label: Animals in care at month end, metric: in_care, stat: monthly_average}

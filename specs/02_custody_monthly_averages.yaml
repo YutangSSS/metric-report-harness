@@ -1,0 +1,20 @@
+id: "02"
+title: Monthly averages by custody type, with % change
+pattern: >
+  Legal-authority table: monthly averages for Not In Care, Temporary, Permanent, an In Care subtotal and an
+  overall total, with % change from the prior year.
+request: >
+  For the placemat, show the average number of animals in care at month end by custody type for FY 2016-17 and
+  FY 2017-18 to date (same months last year), with an "In shelter custody" subtotal (stray hold + owner
+  surrender), the overall total, and % change.
+tables:
+  - kind: breakdown_change
+    title: Average animals in care at month end, by custody type
+    metric: in_care
+    stat: monthly_average
+    dimension: custody_group
+    previous: "2016-17 YTD"
+    current: "2017-18 YTD"
+    groups:
+      In shelter custody: [Stray hold, Owner surrender]
+    row_order: [Public assist, Stray hold, Owner surrender, In shelter custody, Other, Total]

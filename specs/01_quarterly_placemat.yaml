@@ -1,0 +1,30 @@
+id: "01"
+title: Quarterly placemat
+pattern: >
+  Quarterly statistics placemat. About ten queries, each driven by hand-edited date parameters
+  (single month, previous fiscal year, current and previous FY quarter, number of months), split by region type.
+request: >
+  Please prepare the Q3 placemat: average intakes started each month, average stays closed each month and
+  average animals in care at month end, by region type, for the previous fiscal year, the last month of the
+  quarter, and the fiscal year to date against the same months last year.
+params:
+  quarter: "2017-18 Q3"
+tables:
+  - kind: placemat
+    title: Average number of intakes started each month
+    metric: intakes
+    stat: monthly_average
+    dimension: region_type
+    current: ytd
+  - kind: placemat
+    title: Average number of stays closed each month
+    metric: outcomes
+    stat: monthly_average
+    dimension: region_type
+    current: ytd
+  - kind: placemat
+    title: Average number of animals in care at month end
+    metric: in_care
+    stat: monthly_average
+    dimension: region_type
+    current: ytd

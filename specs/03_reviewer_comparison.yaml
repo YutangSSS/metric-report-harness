@@ -1,0 +1,20 @@
+id: "03"
+title: QA reviewer comparison
+pattern: >
+  The QA reviewer recomputes a table and sends back mismatches. Most turn out to be rounding: parts rounded on
+  their own, % change computed from unrounded numbers, or the % change divided by the wrong year.
+request: >
+  The reviewer's numbers for the custody table don't match yours in a few cells. Can you check each one and
+  reply with what's going on?
+reviewer_csv: specs/fixtures/reviewer_03.csv
+tables:
+  - kind: breakdown_change
+    title: Average animals in care at month end, by custody type
+    metric: in_care
+    stat: monthly_average
+    dimension: custody_group
+    previous: "2016-17 YTD"
+    current: "2017-18 YTD"
+    groups:
+      In shelter custody: [Stray hold, Owner surrender]
+    row_order: [Public assist, Stray hold, Owner surrender, In shelter custody, Other, Total]

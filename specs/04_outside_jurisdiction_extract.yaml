@@ -1,0 +1,18 @@
+id: "04"
+title: Ad hoc extraction, outside-jurisdiction intakes
+pattern: >
+  Ad hoc request with a named QA reviewer and a one-day deadline: intakes transferred in from another
+  jurisdiction over the last five years plus the current year to date, which files are still ongoing and for how
+  long, plus a deceased flag and date of death.
+request: >
+  Pull all intakes from outside our jurisdiction for the last three fiscal years and 2017-18 to date. Tell me
+  which are still ongoing as of Feb 15 2018 and how long they have been open, and flag any that died or were
+  euthanized, with the date. QA by the reviewer. Due tomorrow.
+params:
+  as_of: "2018-02-15"
+tables:
+  - kind: extraction
+    title: Outside-jurisdiction intakes by fiscal year
+    filters:
+      region_type: Outside jurisdiction
+    full_years: 3

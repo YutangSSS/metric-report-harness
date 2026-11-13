@@ -1,0 +1,14 @@
+id: "05"
+title: Chart update, intakes by intake type by fiscal year
+pattern: >
+  "Update this chart from 2015-16 to 2024-25. Urgent, by noon tomorrow." The last year is often not complete.
+request: >
+  Please update the intakes chart for FY 2014-15 to FY 2017-18, split by intake type.
+tables:
+  - kind: annual_series
+    title: Intakes started by fiscal year and intake type
+    metric: intakes
+    dimension: intake_type
+    from_fy: "2014-15"
+    to_fy: "2017-18"
+    incomplete: ytd

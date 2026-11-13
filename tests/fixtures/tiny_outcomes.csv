@@ -1,0 +1,6 @@
+animal_id,datetime,outcome_type,outcome_subtype
+A1,2017-02-01T00:00:00,Adoption,
+A2,2017-02-01T00:00:00,Transfer,Partner
+A3,2017-03-02T12:00:00,Died,In Kennel
+A4,2017-03-01T08:00:00,Return to Owner,
+A9,2016-12-01T08:00:00,Adoption,

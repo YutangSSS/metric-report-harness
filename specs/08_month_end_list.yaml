@@ -1,0 +1,16 @@
+id: "08"
+title: Month-end list for a partner team
+pattern: >
+  Monthly list sent to a partner team near month end. A rerun on a later day returned one fewer person because the
+  source data changed, and nobody could say which record or why.
+request: >
+  Send the partner team the list of dogs in care 30+ days at the end of January 2018.
+params:
+  month: "2018-01"
+snapshot: true
+tables:
+  - kind: month_end_list
+    title: Dogs in care 30+ days at month end
+    min_days_in_care: 30
+    filters:
+      animal_type: Dog

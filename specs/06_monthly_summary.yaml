@@ -1,0 +1,16 @@
+id: "06"
+title: Monthly summary with filters
+pattern: >
+  Report Builder summary by month with filters for service delivery type and fiscal year. Report Builder dropped
+  months with no data instead of showing zero.
+request: >
+  Build a monthly summary of bird intakes by intake type for FY 2015-16 to FY 2017-18 to date.
+  Months with none should still show.
+tables:
+  - kind: monthly_summary
+    title: Bird intakes by month and intake type
+    metric: intakes
+    dimension: intake_type
+    fiscal_years: ["2015-16", "2016-17", "2017-18"]
+    filters:
+      animal_type: Bird
