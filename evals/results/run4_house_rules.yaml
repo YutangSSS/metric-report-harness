@@ -1,0 +1,97 @@
+- id: e01
+  card_type: placemat
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 25.9
+- id: e02
+  card_type: breakdown_change
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 23.1
+- id: e03
+  card_type: reviewer_check
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 22.9
+- id: e04
+  card_type: extraction
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 25.1
+- id: e05
+  card_type: annual_series
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 24.7
+- id: e06
+  card_type: monthly_summary
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 19.4
+- id: e07
+  card_type: monthly_summary
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 29.7
+- id: e08
+  card_type: month_end_list
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 17.4
+- id: e09
+  card_type: point_in_time
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 16.9
+- id: e10
+  card_type: comparison
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 22.1
+- id: a01
+  card_type: placemat
+  passed: true
+  why: 'asked: Which quarter should the placemat cover? The latest complete quarter
+    as of 15 January 2018 is 2017-18 Q3 (October to December 2017). Is that the one
+    you want? | Which quarter is this placemat for (for example 2017-18 Q3)? | Which
+    measures should the placemat show?'
+  seconds: 15.3
+- id: a02
+  card_type: extraction
+  passed: true
+  why: 'asked: Which animals should the list cover? Please name the filter, for example
+    an animal type (Dog, Cat, Bird, Other, Livestock), an intake type, or a region
+    type. | How many full fiscal years before 2017-18 should the list include, on
+    top of 2017-18 year to date? | Which records should the extraction include (for
+    example outside-jurisdiction intakes)? | How many full fiscal years before this
+    one should the extraction cover?'
+  seconds: 12.8
+- id: a03
+  card_type: unsupported
+  passed: true
+  why: 'asked: This can''t be run: the reporting tools only count what has already
+    happened (intakes, outcomes, adoptions, in care). They can''t project next year
+    (2018-19) or model what two more staff would change, and they have no adoption-rate
+    metric. Would historical adoption counts help instead, for example an annual series
+    of adoptions by fiscal year up to 2017-18 YTD?'
+  seconds: 11.0

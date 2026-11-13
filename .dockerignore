@@ -1,0 +1,7 @@
+.venv
+data/*.csv
+out
+dbt/target
+dbt/logs
+.pytest_cache
+__pycache__

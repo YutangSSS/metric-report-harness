@@ -27,8 +27,9 @@ List view: 877 records (see CSV).
 ## Data quality handled by the models
 
 - duplicate intake rows removed: 27
+- duplicate outcome rows removed: 10
 - stays closed at the next intake (no outcome recorded): 29
-- outcomes with no matching intake (animal arrived before the data starts): 1,361
+- outcomes with no matching intake (animal arrived before the data starts): 1,351
 - stays open more than 180 days at the data cut: 311
 
 ## Checks: 14 of 14 passed

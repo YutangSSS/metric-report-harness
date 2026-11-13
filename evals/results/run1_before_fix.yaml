@@ -1,0 +1,103 @@
+- id: e01
+  card_type: placemat
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 18.6
+- id: e02
+  card_type: breakdown_change
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 21.8
+- id: e03
+  card_type: reviewer_check
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 21.6
+- id: e04
+  card_type: extraction
+  passed: false
+  why: 'asked instead of running: Which reviewer will QA this extract? The email doesn''t
+    name one.'
+  seconds: 10.1
+- id: e05
+  card_type: annual_series
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 23.0
+- id: e06
+  card_type: monthly_summary
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 20.3
+- id: e07
+  card_type: monthly_summary
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 35.6
+- id: e08
+  card_type: month_end_list
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 21.3
+- id: e09
+  card_type: point_in_time
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 20.7
+- id: e10
+  card_type: comparison
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 21.8
+- id: a01
+  card_type: placemat
+  passed: true
+  why: "asked: Which quarter should the placemat cover? The latest finished quarter\
+    \ as of 15 Jan 2018 is 2017-18 Q3 (Oct\u2013Dec 2017). Is that the one you want?\
+    \ | I can't see what 'same tables as last time' refers to. Which measures (intakes,\
+    \ outcomes, adoptions, in care, long stays) and which filters did the last placemat\
+    \ use? | Which quarter is this placemat for (for example 2017-18 Q3)? | Which\
+    \ measures should the placemat show?"
+  seconds: 13.5
+- id: a02
+  card_type: extraction
+  passed: true
+  why: 'asked: By ''ongoing animals'', do you mean a record-level intake extract flagged
+    as ongoing as of a date, a month-end list of animals in care N+ days for a partner
+    team, or a count of animals in care on a date? | What date should ''ongoing''
+    be measured as of: today (2018-02-15), the last month end (2018-01-31), or another
+    date? | Which animals should the list cover, for example a region type, animal
+    type or intake type? The extraction needs a filter. | How many full fiscal years
+    before 2017-18 should the list include, alongside year to date? | As of which
+    date should files count as ongoing? | Which records should the extraction include
+    (for example outside-jurisdiction intakes)? | How many full fiscal years before
+    this one should the extraction cover?'
+  seconds: 12.8
+- id: a03
+  card_type: unsupported
+  passed: true
+  why: 'asked: The reporting tools only count what already happened. None of them
+    can forecast next year (2018-19) or estimate what hiring two more staff would
+    do, and there is no staffing data. Would historical adoption counts help instead,
+    for example an annual series of adoptions by fiscal year, or a comparison of 2016-17
+    with 2017-18 YTD? | ''Adoption rate'' could mean either the adoption count or
+    adoptions as a share of stays closed (outcomes). Which one do you mean?'
+  seconds: 11.9

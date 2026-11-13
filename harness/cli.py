@@ -29,7 +29,14 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--set", action="append", default=[], help="override a parameter, e.g. quarter='2017-18 Q2'")
     r.add_argument("--out", default=None)
     sub.add_parser("run-all", help="run every spec in specs/")
+    a = sub.add_parser("ask", help="answer a request email (model reads it, harness computes)")
+    a.add_argument("email_file")
+    a.add_argument("--date", required=True, help="date the email was sent, YYYY-MM-DD")
+    a.add_argument("--attach", default=None)
+    a.add_argument("--backend", default="cli", help="cli (local claude login) or api (ANTHROPIC_API_KEY)")
     args = ap.parse_args(argv)
+    if args.cmd == "ask":
+        return _ask(args)
 
     con = connect()
     fim = first_incomplete_month(con)
@@ -45,6 +52,29 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{status}  {spec['id']}  {spec['title']:<48} checks {n_ok}/{len(result.checks)}  -> {md.relative_to(ROOT) if md.is_relative_to(ROOT) else md}")
         failed += not result.passed
     return 1 if failed else 0
+
+
+def _ask(args) -> int:
+    from datetime import date
+
+    from .agent import handle
+    from .agent.backends import get_backend
+
+    con = connect()
+    ans = handle(get_backend(args.backend), con, Path(args.email_file).read_text(), date.fromisoformat(args.date), args.attach)
+    if ans.spec is None:
+        print("Needs clarification before any numbers are produced:")
+        for q in ans.questions:
+            print(f"  - {q}")
+        return 2
+    out_dir = ROOT / "out" / "ask"
+    md = write(ans.result, out_dir, first_incomplete_month(con))
+    (out_dir / "reply_draft.txt").write_text(ans.reply or "")
+    print(f"{'PASS' if ans.result.passed else 'FAIL'}  report -> {md}")
+    print(f"reply draft ({ans.reply_source}, NOT sent) -> {out_dir / 'reply_draft.txt'}")
+    for f in ans.card.get("follow_ups") or []:
+        print(f"  follow-up: {f}")
+    return 0 if ans.result.passed else 1
 
 
 if __name__ == "__main__":

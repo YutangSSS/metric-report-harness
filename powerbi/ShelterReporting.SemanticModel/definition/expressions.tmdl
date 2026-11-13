@@ -1,0 +1,2 @@
+/// Folder holding the CSVs written by `uv run python -m harness.export`. Change it after cloning.
+expression DataFolder = "C:\metric-report-harness\powerbi\data" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]

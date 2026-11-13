@@ -1,11 +1,16 @@
 -- One row per intake event (an animal can come in more than once).
--- Duplicates removed here are counted in data_quality() so they never disappear silently.
+-- Exact duplicate intake events (same animal, same timestamp) are entered twice in the source; they are
+-- removed BEFORE ids are assigned so the ids do not depend on which copy survives. data_quality() counts them.
 -- region_type plays the role of the "region type" split in a quarterly statistics placemat:
 --   City of Austin / Rest of Travis County / Outside jurisdiction.
 -- custody_group plays the role of legal authority: who holds responsibility for the animal.
 create or replace table stg_intakes as
+with deduped as (
+    select * from raw_intakes
+    qualify row_number() over (partition by animal_id, datetime order by found_location, intake_type) = 1
+)
 select
-    row_number() over (order by animal_id, datetime, found_location, intake_type) as intake_id,
+    row_number() over (order by animal_id, datetime) as intake_id,
     animal_id,
     datetime                                   as intake_dt,
     intake_type,
@@ -24,6 +29,4 @@ select
         when 'Public Assist'      then 'Public assist'
         else 'Other'
     end                                        as custody_group
-from raw_intakes
--- Exact duplicate intake events (same animal, same timestamp) are entered twice in the source; count them once.
-qualify row_number() over (partition by animal_id, datetime order by found_location, intake_type) = 1;
+from deduped;

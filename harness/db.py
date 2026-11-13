@@ -58,6 +58,7 @@ def data_quality(con: duckdb.DuckDBPyConnection) -> dict[str, int]:
     q = lambda sql: con.execute(sql).fetchone()[0]
     return {
         "duplicate intake rows removed": q("select count(*) from raw_intakes") - q("select count(*) from stg_intakes"),
+        "duplicate outcome rows removed": q("select count(*) from raw_outcomes") - q("select count(*) from stg_outcomes"),
         "stays closed at the next intake (no outcome recorded)": q("select count(*) from fct_stays where outcome_type = 'Not recorded'"),
         "outcomes with no matching intake (animal arrived before the data starts)": q(
             "select count(*) from stg_outcomes o where not exists (select 1 from fct_stays s where s.outcome_id = o.outcome_id)"),

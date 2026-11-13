@@ -1,0 +1,81 @@
+# Synthetic request emails, one per example plus three that must NOT run.
+# A normal case passes when the spec the agent builds produces exactly the same numbers as the golden spec.
+# An ambiguous case passes when the agent asks a question instead of running.
+- id: e01
+  golden: 01_quarterly_placemat.yaml
+  date: 2018-01-15
+  email: |
+    Hi, can you get the Q3 placemat ready for 2017-18? Same as always: average intakes started per month,
+    average stays closed per month and average animals in care at month end, split by region type.
+    Need it by Friday for the finance cross-check.
+- id: e02
+  golden: 02_custody_monthly_averages.yaml
+  date: 2018-03-05
+  email: |
+    For the placemat I also need the average number of animals in care at month end by custody type,
+    2017-18 to date against the same months of 2016-17, with the in-custody subtotal and % change.
+- id: e03
+  golden: 03_reviewer_comparison.yaml
+  attachment: specs/fixtures/reviewer_03.csv
+  date: 2018-03-06
+  email: |
+    The reviewer re-ran the custody table (average in care at month end by custody type, 2017-18 YTD vs
+    2016-17 YTD) and a few cells don't match yours. Their numbers are attached. Can you check and reply?
+- id: e04
+  golden: 04_outside_jurisdiction_extract.yaml
+  date: 2018-02-15
+  email: |
+    Urgent: pull every intake from outside our jurisdiction for the last three fiscal years plus this year
+    to date. Flag which ones are still ongoing as of today and how long they've been open, and whether the
+    animal died or was euthanized (with the date). The reviewer will QA. Due tomorrow noon.
+- id: e05
+  golden: 05_chart_update.yaml
+  date: 2018-03-10
+  email: |
+    Could you update the intakes chart so it runs from 2014-15 to 2017-18, split by intake type? Urgent.
+- id: e06
+  golden: 06_monthly_summary.yaml
+  date: 2018-03-10
+  email: |
+    Please build a monthly summary of bird intakes by intake type for 2015-16 through 2017-18.
+    Months with zero should still show up.
+- id: e07
+  golden: 07_list_view.yaml
+  date: 2018-03-12
+  email: |
+    Same bird intake summary by month and intake type for 2015-16 to 2017-18, but please add a list view
+    underneath with the individual records.
+- id: e08
+  golden: 08_month_end_list.yaml
+  date: 2018-02-02
+  email: |
+    The partner team needs the usual list: dogs that have been in care 30 days or more at the end of
+    January 2018.
+- id: e09
+  golden: 09_point_in_time.yaml
+  date: 2018-01-08
+  email: |
+    How many distinct animals were in care on December 31, 2017, by animal type and region type?
+    Leave out wildlife intakes.
+- id: e10
+  golden: 10_executive_comparison.yaml
+  date: 2018-03-08
+  email: |
+    For the briefing note: intakes started (total and per month), stays closed, adoptions, intakes that
+    became 30+ day stays and average animals in care at month end, 2017-18 to date compared with the same
+    months of 2016-17.
+- id: a01
+  expect: questions
+  date: 2018-01-15
+  email: |
+    Can you do the placemat again? Same tables as last time please.
+- id: a02
+  expect: questions
+  date: 2018-02-15
+  email: |
+    Pull the list of ongoing animals for me, need it today.
+- id: a03
+  expect: questions
+  date: 2018-02-15
+  email: |
+    What's the projected adoption rate for next year if we hire two more staff?

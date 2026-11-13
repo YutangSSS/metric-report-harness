@@ -3,3 +3,7 @@ __pycache__/
 .pytest_cache/
 out/
 *.egg-info/
+dbt/target/
+dbt/logs/
+logs/
+powerbi/data/

@@ -25,16 +25,12 @@ List view: 316 records (see CSV).
 
 - In care at month end: stays with intake before the end of the month and no outcome before it (intake_dt < month_end and (outcome_dt is null or outcome_dt >= month_end)).
 
-## Rerun drift
-
-0 record(s) changed since the last saved run of this list.
-
-
 ## Data quality handled by the models
 
 - duplicate intake rows removed: 27
+- duplicate outcome rows removed: 10
 - stays closed at the next intake (no outcome recorded): 29
-- outcomes with no matching intake (animal arrived before the data starts): 1,361
+- outcomes with no matching intake (animal arrived before the data starts): 1,351
 - stays open more than 180 days at the data cut: 311
 
 ## Checks: 3 of 3 passed

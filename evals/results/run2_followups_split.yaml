@@ -1,0 +1,104 @@
+- id: e01
+  card_type: placemat
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 25.9
+- id: e02
+  card_type: breakdown_change
+  passed: false
+  why: 'asked instead of running: Which custody groups make up the ''in-custody''
+    subtotal? For example, Stray hold + Owner surrender only, or every group except
+    Public assist? Each choice gives a different subtotal.'
+  seconds: 14.2
+- id: e03
+  card_type: reviewer_check
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 26.2
+- id: e04
+  card_type: extraction
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 27.1
+- id: e05
+  card_type: annual_series
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 21.8
+- id: e06
+  card_type: monthly_summary
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 20.7
+- id: e07
+  card_type: monthly_summary
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 27.4
+- id: e08
+  card_type: month_end_list
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 18.2
+- id: e09
+  card_type: point_in_time
+  passed: true
+  why: numbers identical to golden spec
+  reply_grounded: true
+  reply_source: model
+  seconds: 21.2
+- id: e10
+  card_type: comparison
+  passed: false
+  why: 'asked instead of running: The email is dated 2018-03-08. Should ''to date''
+    end at the last complete month (April 2017 to February 2018, compared with April
+    2016 to February 2017), or also include March 1 to 8 in both years? The choice
+    changes every total, and March 2018 has no month end yet for the in-care average.'
+  seconds: 14.8
+- id: a01
+  card_type: placemat
+  passed: true
+  why: 'asked: Which quarter should this placemat cover? The email doesn''t say. I''ve
+    assumed 2017-18 Q3 (Oct-Dec 2017), the last quarter that had finished by Jan 15,
+    2018. | ''Same tables as last time'': which measures did the last placemat include
+    (intakes, outcomes, adoptions, in care at month end, long stays), and were any
+    filters applied? | Which measures should the placemat show?'
+  seconds: 15.1
+- id: a02
+  card_type: extraction
+  passed: true
+  why: 'asked: Which animals should the list cover? The extraction needs a filter,
+    for example a region type, animal type or intake type. | What date should ''ongoing''
+    be measured on: today (2018-02-15), the last month end (2018-01-31), or some other
+    date? | How many full fiscal years before 2017-18 YTD should the intake list go
+    back? | Do you want every ongoing animal (record-level extraction), or only animals
+    in care 30+ days at a month end for a partner team (month-end list)? | As of which
+    date should files count as ongoing? | Which records should the extraction include
+    (for example outside-jurisdiction intakes)? | How many full fiscal years before
+    this one should the extraction cover?'
+  seconds: 12.9
+- id: a03
+  card_type: unsupported
+  passed: true
+  why: 'asked: This asks for a projection of next year''s (2018-19) adoption rate
+    under a staffing scenario (two more hires). None of the reporting tools forecast
+    or model what-if scenarios, and none hold staffing data; they only count historical
+    adoptions. Would historical adoption counts help instead, for example an annual
+    series of adoptions by fiscal year, or this year to date against last year? |
+    "Adoption rate" is not a defined metric. Should it be adoptions as a share of
+    stays closed, adoptions as a share of intakes, or a raw adoption count?'
+  seconds: 9.9
