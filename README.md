@@ -20,12 +20,23 @@ specs/*.yaml ──────────────────────�
 | Reporting harness: Spec → Runner → Verifier → Report | SQL modelling, tested metric definitions, data quality gates | `harness/`, `models/`, `specs/` |
 | Request-to-report agent | LLM reads, code computes, eval on 13 emails | `harness/agent/`, `evals/` |
 | LLM reply with grounding check | No invented numbers reach a reader | `harness/agent/summary.py` |
-| dbt port | Same models in dbt with 15 data tests, proven identical | `dbt/` |
 | API + Docker | Read-only FastAPI service, container smoke-tested in CI | `harness/api.py`, `Dockerfile` |
-| Power BI semantic model | Star schema, TMDL model, DAX measures reconciled to the harness | `powerbi/` |
-| Recurrence model | Time-split ML with censoring and calibration | `ml/`, `docs/ml-recurrence.md` |
 
-All 10 reports run in 0.51 s (`harness run-all`, 3 runs, M-series Mac). `pytest`: 66 tests in about 4 s.
+All 10 reports run in 0.51 s (`harness run-all`, 3 runs, M-series Mac). `pytest`: 58 tests in about 3 s.
+
+**Start here:** `uv run harness run specs/01_quarterly_placemat.yaml --set quarter="2017-18 Q2"`, then read
+`out/01_quarterly_placemat/report.md`. It shows a table computed by code, with the checks proving it adds up.
+
+**Related repos**, each standalone and built on the same data:
+
+| Repo | What it shows |
+|---|---|
+| [shelter-dbt](https://github.com/YutangSSS/shelter-dbt) | The same models in dbt, with data tests |
+| [shelter-powerbi](https://github.com/YutangSSS/shelter-powerbi) | Star schema and Power BI semantic model, with measures checked against these reports |
+| [shelter-recurrence-ml](https://github.com/YutangSSS/shelter-recurrence-ml) | Time-split ML with censoring and calibration |
+
+All four repos build the same `fct_stays` and check the same fingerprint, an MD5 over every row and column
+(`tests/test_fingerprint.py`).
 
 ## Why it exists
 
@@ -82,7 +93,7 @@ Sample output for every example: [`docs/sample-reports/`](docs/sample-reports/).
   - 311 stays have been open more than 180 days at the data cut.
 
   The verifier found the duplicate intakes on its first run: one animal was counted twice in a point-in-time table.
-  The dbt parity test found the duplicate outcomes: row ids depended on which copy survived.
+  Comparing the dbt port row for row found the duplicate outcomes: row ids depended on which copy survived.
 
 ## The agent
 
@@ -115,18 +126,6 @@ An email passes only if the spec the agent builds gives exactly the same numbers
 
 Results per email are in `evals/results/`. Each run took about 4.5 minutes at about 20 seconds per email.
 
-## dbt
-
-`cd dbt && uv run --group dbt dbt build --profiles-dir .` builds the same three models with 15 data tests:
-- unique and not-null keys
-- accepted values
-- relationships
-- no negative stay lengths
-- no overlapping stays for one animal
-- a warning listing the 311 long-open stays
-
-`tests/test_dbt.py` checks that dbt's `fct_stays` and the harness's are identical, row for row (80,160 rows).
-
 ## API and Docker
 
 `uv run --group api uvicorn harness.api:app` serves these endpoints:
@@ -137,39 +136,17 @@ Results per email are in `evals/results/`. Each run took about 4.5 minutes at ab
 
 The API is read-only and never writes snapshots. CI builds the Docker image, starts it, and checks `/health` and a Q2 placemat run.
 
-## Power BI
-
-`uv run python -m harness.export` writes a star schema:
-- `fct_stays`
-- a month-end snapshot table for the in-care stock
-- a fiscal date table
-- four dimensions
-
-`powerbi/` holds the semantic model as TMDL, with DAX measures. Tests confirm that the exported tables reproduce the harness numbers and that every column the model uses exists. The model has **not** been opened in Power BI Desktop, which needs Windows. See [`powerbi/README.md`](powerbi/README.md).
-
-## Recurrence model
-
-`uv run --group ml python ml/recurrence.py` predicts whether an adopted or returned animal comes back within 180 days. It trains on FY 2014-15 and 2015-16 and tests on FY 2016-17. Only stays with the full 180-day window observed are labelled.
-
-| Model | AUC | Brier score | Return rate in top 10% |
-|---|---:|---:|---:|
-| Base rate | 0.500 | 0.1001 | 11.1% |
-| Logistic regression | 0.653 | 0.0975 | 22.2% |
-| Gradient boosting | 0.662 | 0.0967 | 21.0% |
-
-This is a modest model. It ranks well enough to double the return rate in the top decile, and it is well calibrated (see `docs/ml-recurrence.md`).
-
 ## Tests
 
-`uv sync --all-groups && uv run pytest` runs 66 tests:
+`uv sync --all-groups && uv run pytest` runs 58 tests:
 
 - **Rules** on hand-checked inputs, including a 7-row dataset of boundary cases.
 - **Gate tests** prove the verifier rejects bad tables.
 - **All ten examples** pass on the real data. An **independent recount** in plain Python (`tests/oracle.py`) agrees with the harness.
 - **Drift:** a back-dated adoption is caught, and the record and field are named.
 - **Agent, offline:** a correct card reproduces each golden spec, and a misread quarter fails the eval. An invented number in a reply is rejected.
-- **Parity:** dbt and harness tables are identical. The Power BI export reproduces the harness numbers, and the Power BI model references only real columns.
-- **API** endpoints, and **ML** checks that the split doesn't leak and the model beats the base rate.
+- **Fingerprint:** `fct_stays` matches the MD5 that the three related repos also check.
+- **API** endpoints.
 
 Deliberately breaking the in-care rule (`>=` to `>`) fails 3 tests. Removing the intake deduplication fails 2.
 

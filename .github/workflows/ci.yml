@@ -21,10 +21,7 @@ jobs:
         run: uv run python scripts/fetch_data.py
       - name: Install all groups
         run: uv sync --all-groups
-      - name: dbt build (models + 15 data tests)
-        working-directory: dbt
-        run: uv run dbt build --profiles-dir .
-      - name: Tests (rules, 10 examples, independent recount, agent offline, dbt parity, API, ML)
+      - name: Tests (rules, 10 examples, independent recount, fingerprint, agent offline, API)
         run: uv run pytest -q
       - name: Run all 10 reports through the gate
         run: uv run harness run-all

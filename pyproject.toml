@@ -16,14 +16,7 @@ api = [
     "httpx>=0.28.1",
     "uvicorn>=0.54.0",
 ]
-dbt = [
-    "dbt-duckdb>=1.11.1",
-]
 dev = ["pytest>=8.0"]
-ml = [
-    "pandas>=3.1.1",
-    "scikit-learn>=1.9.1",
-]
 
 [project.scripts]
 harness = "harness.cli:main"
